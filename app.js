@@ -12,7 +12,7 @@ const expressValidator = require('express-validator');
 const routes = require('./routes/index');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
-// require('./handlers/passportSettings');
+require('./handlers/passportSettings');
 const fileUpload = require('express-fileupload');
 const multer = require('multer');
 
@@ -41,20 +41,20 @@ app.use(cookieParser());
 
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages
-// app.use(session({
-//     secret: process.env.SECRET,
-//     key: process.env.KEY,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new MongoStore({ mongooseConnection: mongoose.connection })
-// }));
-//
-// // // Passport JS is what we use to handle our logins
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(session({
+    secret: process.env.SECRET,
+    key: process.env.KEY,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 
-// // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
-// app.use(flash());
+// // Passport JS is what we use to handle our logins
+app.use(passport.initialize());
+app.use(passport.session());
+
+// The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
+app.use(flash());
 
 // pass variables to our templates + all requests
 app.use((req, res, next) => {

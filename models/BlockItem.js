@@ -14,6 +14,11 @@ const blockItemSchema = new Schema({
         trim: true,
         required: 'Please provide content'
     },
+    type: {
+        type: String,
+        trim: true,
+        required: 'Please provide type'
+    },
     created: {
         type: Date,
         default: Date.now
@@ -22,13 +27,16 @@ const blockItemSchema = new Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: 'You must supply an user'
-    },
-    block: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Block',
-        required: 'You must supply an block'
     }
 });
+
+function autopopulate(next) {
+    this.populate('author');
+    next();
+}
+
+blockItemSchema.pre('find', autopopulate);
+blockItemSchema.pre('findOne', autopopulate);
 
 blockItemSchema.plugin(mongodbErrorHandler);
 

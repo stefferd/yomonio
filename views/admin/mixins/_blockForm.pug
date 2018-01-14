@@ -1,0 +1,27 @@
+mixin blockForm()
+    form.form(action=`/admin/block-add/${blockId}` method="POST" enctype="multipart/form-data")
+        h2.form__header Blok toevoegen
+        p.content__white--combined_right__text Selecteer een template en vul de velden
+        .form__placeholder
+            select#template(name="template")
+                option(value="hero") Hero
+                option(value="features") Features
+                option(value="preview") Preview
+                option(value="download") Download
+
+        .templates#hero
+            .form__placeholder
+                input(type="text" placeholder="Hero titel" name="title" class="input input__field")
+            .form__placeholder
+                textarea(placeholder="Hero tekst" name="text" class="input input__textarea")
+            .form__placeholder
+                input(type="file" name="photo" class="input input__image" accept="image/gif, image/png, image/jpeg")
+        .templates#features(style="display: none")
+            Dit is voor de feature
+        .templates#preview(style="display: none")
+            Dit is voor de preview
+        .templates#download(style="display: none")
+            Dit is voor de download
+
+        .form__placeholder
+            input(type="submit" value="Blok opslaan" class="input input__button input__button")

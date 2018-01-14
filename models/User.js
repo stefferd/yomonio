@@ -26,10 +26,6 @@ const userSchema = new Schema({
         type: String,
         trim: true
     },
-    sourceCode: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'SourceCode'
-    },
     type: {
         type: String,
         default: 'member',

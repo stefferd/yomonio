@@ -1,0 +1,15 @@
+mixin pageForm()
+    form.form(action="/admin/pages" method="POST")
+        h2.form__header Pagina toevoegen
+        p.content__white--combined_right__text Voeg een bron toe met unieke codes
+        .form__placeholder
+            input(type="text" placeholder="Pagina naam" name="name" class="input input__field")
+        .form__placeholder
+            input(type="text" placeholder="Pagina slug" name="slug" class="input input__field")
+        .form__placeholder
+            label
+                input(type="checkbox" name="active" class="input input__checkbox")
+                | Actief
+
+        .form__placeholder
+            input(type="submit" value="Toevoegen" class="input input__button input__button")

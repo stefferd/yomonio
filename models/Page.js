@@ -30,7 +30,15 @@ const pageSchema = new Schema({
     }
 });
 
+function autopopulate(next) {
+    this.populate('author');
+    next();
+}
+
+pageSchema.pre('find', autopopulate);
+pageSchema.pre('findOne', autopopulate);
+
 pageSchema.plugin(mongodbErrorHandler);
 
-module.exports = mongoose.model('Source', pageSchema);
+module.exports = mongoose.model('Page', pageSchema);
 

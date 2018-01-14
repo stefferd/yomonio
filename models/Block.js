@@ -4,10 +4,10 @@ mongoose.Promise = global.Promise;
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
 const blockSchema = new Schema({
-    name: {
+    template: {
         type: String,
         trim: true,
-        required: 'Please provide a valid block name'
+        required: 'Please provide a valid block template'
     },
     created: {
         type: Date,
@@ -26,8 +26,19 @@ const blockSchema = new Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: 'You must supply an user'
-    }
+    },
+    blockItems: [{ type : mongoose.Schema.ObjectId, ref: 'BlockItem' }]
 });
+
+function autopopulate(next) {
+    this.populate('author');
+    this.populate('page');
+    this.populate('blockItems');
+    next();
+}
+
+blockSchema.pre('find', autopopulate);
+blockSchema.pre('findOne', autopopulate);
 
 blockSchema.plugin(mongodbErrorHandler);
 

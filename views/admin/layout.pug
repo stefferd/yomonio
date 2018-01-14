@@ -3,6 +3,8 @@ html
   head
     title= `${title} | ${h.siteName}`
     meta(name="viewport" content="width=device-width, initial-scale=1")
+    script(src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous")
+    script(type="text/javascript" src="/js/index.js")
   body
     block header
       .container
@@ -10,8 +12,8 @@ html
           nav.nav
             ul.nav__section.nav__section--pages
               li.nav__item(class=(currentPath.startsWith('/sources') ? 'nav__item--active' : ''))
-                a.nav__link(href='sources', class=(currentPath.startsWith('/sources') ? 'nav__link--active' : ''))
-                  span Bronnen
+                a.nav__link(href='/admin/pages', class=(currentPath.startsWith('/pages') ? 'nav__link--active' : ''))
+                  span Pagina's
             ul.nav__section.nav__section--logo
               li.nav__item
                 a.nav__link.nav__link--logo(href="/")

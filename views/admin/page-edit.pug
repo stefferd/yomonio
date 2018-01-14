@@ -1,0 +1,39 @@
+extends layout
+
+include mixins/_pageForm
+
+block content
+    .content
+        .container
+            .columns.is-mobile
+                .column.is-12
+                    .inner_content.columns
+                        .column.content__white
+                            h1 Pagina bewerken
+                            dl
+                                dt Titel
+                                dd #{page.name}
+                                dt slug
+                                dd #{page.slug}
+                                dt Aangemaakt op
+                                dd(datetime=page.created)= h.moment(page.created).format('DD-MM-YYYY')
+                                dt Aangemaakt door
+                                dd #{page.author.name}
+block alternate
+    .content.content__alternate
+        .container
+            .columns.is_mobile
+                .column.is-10.is-offset-1
+                    .inner_content.columns
+                        .column.content__white
+                            if blocks.length > 0
+                                each block in blocks
+                                    p #{block.template}
+                                    each blockItem in block.blockItems
+                                        #{blockItem.content}
+                                    a(href="#" title="Bewerken") Bewerken
+
+                            else
+                                p Er zijn nog geen content blokken toegevoegd
+
+                            a(href=`/admin/block-add/${page._id}` title="Blok toevoegen") Content toevoegen

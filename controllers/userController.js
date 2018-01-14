@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const SourceCode = mongoose.model('SourceCode');
 const promisify = require('es6-promisify');
 
 exports.loginForm = (req, res) => {
@@ -34,21 +33,12 @@ exports.validateRegister = (req, res, next) => {
 };
 
 exports.register = async (req, res) => {
-    const sourceCode = await SourceCode.findOne({ code: req.body.sourceCode });
     const user = await User.findOne({email: req.body.email});
 
-    if (!sourceCode) {
-        req.flash('error', 'Unieke code is niet valide probeer het opnieuw');
-        res.render('register', { title: 'Register', body: req.body, flashes: req.flash() });
-    } else if (!user) {
-        const user = new User({ email: req.body.email, name: req.body.name, sourceCode: sourceCode });
+    if (!user) {
+        const user = new User({ email: req.body.email, name: req.body.name });
         const register = promisify(User.register, User);
         await register(user, req.body.password);
-        await SourceCode.findOneAndUpdate(
-            { _id: sourceCode._id},
-            { $set: { used: true }},
-            { new: true, runValidators: true, context: 'query' }
-        );
         req.flash('success', 'Het aanmelden is gelukt, u kunt nu inloggen');
         res.render('login', { title: 'Aanmelden gelukt', body: req.body, flashes: req.flash() });
     } else {
