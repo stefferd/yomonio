@@ -1,6 +1,9 @@
 {
   "name": "momonio",
   "version": "0.0.1",
+  "engines": {
+    "node": "= 7.10"
+  },
   "description": "Webapp to promote monio",
   "main": "index.js",
   "scripts": {
@@ -10,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stefferd/arrivavoordeelpas.git"
+    "url": "git+https://github.com/stefferd/momonio.git"
   },
   "author": "S. van den Berg <stef@dexperts.nl>",
   "license": "UNLICENSED",
