@@ -1,0 +1,40 @@
+.form {
+  &__header {
+    padding: $xl_margin;
+    font: 300 26px/1 'Roboto', sans-serif;
+    text-align: center;
+  }
+
+  &__placeholder {
+    padding: $m_margin 0;
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+    &--last {
+      padding: $m_margin 0 $xl_margin 0;
+    }
+    &--first {
+      padding: $xl_margin 0 $m_margin 0;
+    }
+
+    &--alternate {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 6px;
+      padding: $xl_margin 0;
+    }
+  }
+
+  p, a {
+    padding: $xl_margin $xl_margin $m_margin $xl_margin;
+    margin: 0;
+    color: $font_alternate;
+  }
+
+  a {
+    padding: $m_margin $xl_margin $xl_margin $xl_margin;
+    font: 300 14px/1 'Roboto', sans-serif;
+    color: $font_link;
+    display: block;
+  }
+}

@@ -1,0 +1,19 @@
+.button {
+  border: 0;
+  background: $background_button;
+  color: $font_button;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  padding: $l_margin $xl_margin;
+  margin: 0 auto;
+  font: 500 16px/1.2 'Roboto', sans-serif;
+  border-radius: 6px;
+  width: 74%;
+  text-decoration: none;
+
+  &__primary {
+    background: $background_button_primary;
+    color: $font_button_primary;
+  }
+}

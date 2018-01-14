@@ -1,0 +1,13 @@
+extends layout
+
+include mixins/_forgot
+
+block content
+
+block alternate
+    .content__alternate
+        .container
+            .row
+                .col.offset_1_of_3.span_1_of_3
+                    .inner_content
+                        +forgotForm()

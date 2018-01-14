@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+@import 'components/reset';
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+@import './../../node_modules/bulma/sass/utilities/initial-variables';
+@import './../../node_modules/bulma/sass/utilities/variables';
+@import './../../node_modules/bulma/sass/utilities/mixins';
+@import './../../node_modules/bulma/sass/grid/all'; /* import bulma grid */
+@import './../../node_modules/bulma/sass/elements/container';
+@import 'components/colors';
+@import 'components/margins';
+@import 'components/resolutions';
+@import 'components/header';
+@import 'components/nav';
+@import 'components/content';
+@import 'components/inner_content';
+@import 'components/form';
+@import 'components/form_field';
+@import 'components/button';
+@import 'components/flash';
+@import 'components/footer';

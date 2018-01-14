@@ -1,0 +1,61 @@
+{
+  "name": "momonio",
+  "version": "0.0.1",
+  "description": "Webapp to promote monio",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "npm run test",
+    "build": "webpack --watch --config  webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefferd/arrivavoordeelpas.git"
+  },
+  "author": "S. van den Berg <stef@dexperts.nl>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/stefferd/arrivavoordeelpas/issues"
+  },
+  "homepage": "https://github.com/stefferd/arrivavoordeelpas#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bulma": "^0.5.1",
+    "connect-ensure-login": "^0.1.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
+    "es6-promisify": "^5.0.0",
+    "express": "^4.15.4",
+    "express-fileupload": "^0.3.0",
+    "express-session": "^1.15.5",
+    "express-validator": "^4.1.1",
+    "fast-csv": "^2.4.1",
+    "html-to-text": "^3.3.0",
+    "juice": "^4.1.1",
+    "lodash": "^4.17.4",
+    "md5": "^2.2.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.10",
+    "mongoose-mongodb-errors": "0.0.2",
+    "mongoose-validator": "^1.3.2",
+    "multer": "^1.3.0",
+    "nodemailer": "^4.1.0",
+    "passport": "^0.4.0",
+    "passport-local-mongoose": "^4.2.1",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-rc.4",
+    "randomstring": "^1.1.5",
+    "validator": "^8.1.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "dotenv": "^4.0.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.6"
+  }
+}

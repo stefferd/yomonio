@@ -1,0 +1,13 @@
+.footer {
+  background: #353745;
+  color: #898EA2;
+
+  &__copy {
+    margin: 0 auto;
+    text-align: left;
+    padding: $m_margin;
+    font-weight: 300;
+    font-size: 13px;
+  }
+}
+

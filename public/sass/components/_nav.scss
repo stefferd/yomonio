@@ -1,0 +1,55 @@
+@import 'colors';
+@import 'margins';
+
+.nav {
+  display: flex;
+  align-items: center;
+
+  &__section {
+    padding-left: 0;
+    margin: 0 auto;
+
+    &--pages {
+      width: 33%;
+    }
+
+    &--logo {
+      width: 33%;
+    }
+    &--loggedin {
+      width: 33%;
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    padding: 4px $xl_margin 0 $xl_margin;
+    border-bottom: 4px solid $white;
+
+    &--active, &:hover {
+      border-color: $nav_active;
+    }
+  }
+
+  &__link {
+    font: 400 18px/3 'Roboto', sans-serif;
+    color: $nav_inactive;
+    text-decoration: none;
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      vertical-align: middle;
+    }
+
+    span {
+      line-height: 3;
+      display: block;
+    }
+
+    &--active, &:hover {
+      color: $nav_active;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import 'colors';
+@import 'margins';
+
+.input {
+
+  border: 2px solid $border_form;
+  background: $white;
+  color: $font;
+  padding: $l_margin $xl_margin;
+  margin: 0 auto;
+  font: 400 14px/1.2 'Roboto', sans-serif;
+  border-radius: 6px;
+  width: 85%;
+
+  &__field {
+    width: 74%;
+  }
+
+  &__button {
+    border: 0;
+    background: $background_button;
+    color: $font_button;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+
+    &--primary {
+      background: $background_button_primary;
+      color: $font_button_primary;
+    }
+
+    &--inline {
+      position: absolute;
+      top: 13px;
+      right: 45px;
+      width: 100px;
+      font-size: 14px;
+      border: 2px solid $border_form;
+      border-radius: 0 6px 6px 0;
+    }
+  }
+}

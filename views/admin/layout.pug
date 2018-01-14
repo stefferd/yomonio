@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title= `${title} | ${h.siteName}`
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body
+    block header
+      .container
+        header.header
+          nav.nav
+            ul.nav__section.nav__section--pages
+              li.nav__item(class=(currentPath.startsWith('/sources') ? 'nav__item--active' : ''))
+                a.nav__link(href='sources', class=(currentPath.startsWith('/sources') ? 'nav__link--active' : ''))
+                  span Bronnen
+            ul.nav__section.nav__section--logo
+              li.nav__item
+                a.nav__link.nav__link--logo(href="/")
+            ul.nav__section.nav__section--loggedin
+              if user
+                li.nav__item
+                  a.nav__link(href="/account", class=(currentPath.startsWith('/account') ? 'nav__link--active' : ''))
+                    img.avatar(src=user.gravatar)
+                li.nav__item
+                  a.nav__link(href="/logout", class=(currentPath.startsWith('/logout') ? 'nav__link--active' : ''))
+                    span Logout
+    block hero
+
+    block messages
+      if locals.flashes
+        .flash-messages
+          - const categories = Object.keys(locals.flashes)
+          each category in categories
+            each message in flashes[category]
+              .flash(class=`flash--${category}`)
+                p.flash__text!= message
+                button.flash__remove(onClick="this.parentElement.remove()") &times;
+
+    block content
+
+    block alternate
+
+    .footer
+      block footer
+        .container
+          p.footer__copy &copy; 2017 DEXPERTS. All rights reserved.
+    block scripts
+      script(src="/js/bundle.js")
+      link(rel='stylesheet', href='/css/style.css')

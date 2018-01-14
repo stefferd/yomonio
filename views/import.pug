@@ -1,0 +1,18 @@
+extends layout
+
+block hero
+    .content.content__hero
+        .container
+            .row
+                .intro
+                    Selecteer het bestand en druk op import en het wordt omgezet naar sql voor wordpress
+
+block content
+    .content
+        .container
+            .row
+                .col.span_3_of_3
+                    .form__placeholder
+                        form.form(action="/" method="POST" enctype="multipart/form-data")
+                            input.input.input__field(name="csvfile" type="file")
+                            button.input.input__button.input__button--inline Import

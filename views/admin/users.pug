@@ -1,0 +1,31 @@
+extends layout
+
+include mixins/_sourceForm
+
+block content
+    .content
+        .container
+            .columns.is-mobile
+                .column.is-12
+                    .inner_content.columns
+                        .column.content__white
+                            table
+                                thead
+                                    tr
+                                        th Naam
+                                        th Email
+                                        th Type
+                                tbody
+                                    each user in users
+                                        tr
+                                            td #{user.name}
+                                            td #{user.email}
+                                            td #{user.type}
+block alternate
+    .content.content__alternate
+        .container
+            .columns.is_mobile
+                .column.is-10.is-offset-1
+                    .inner_content.columns
+                        .column.content__white
+                            +sourceForm()

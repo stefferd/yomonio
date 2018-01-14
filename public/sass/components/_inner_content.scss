@@ -1,0 +1,9 @@
+.inner_content {
+  border-radius: 6px;
+  background: $background_inner_content;
+  display: flex;
+
+  &__combined {
+    height: 100%;
+  }
+}

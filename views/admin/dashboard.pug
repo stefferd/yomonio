@@ -1,0 +1,26 @@
+extends layout
+
+block hero
+    .content.content__hero
+        .container
+            .row
+                .col.span_1_of_3
+                    .inner_content
+                        h2 Find your favorite shop
+
+                .col.span_1_of_3
+                    .inner_content
+                        h2 Go to the shop on this portal
+
+                .col.span_1_of_3
+                    .inner_content
+                        h2 Buy whatever you want
+
+block content
+    .content
+        .container
+            .row
+                .col.span_3_of_3
+                    .form__placeholder
+                        input.input.input__field(name="query" placeholder="Find your favorite shop")
+                        button.input.input__button.input__button--inline Search

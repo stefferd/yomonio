@@ -1,0 +1,14 @@
+extends layout
+
+include mixins/_sourceForm
+
+block content
+
+block alternate
+    .content.content__alternate
+        .container
+            .columns.is_mobile
+                .column.is-10.is-offset-1
+                    .inner_content.columns
+                        .column.content__white
+                            +sourceForm()

@@ -1,0 +1,64 @@
+.content {
+  padding: $gutter;
+  background: $background;
+  border-bottom: 1px solid $border_form;
+
+  &__hero {
+    background: $background_hero;
+  }
+
+  &__alternate {
+    background: $background_alternate;
+  }
+
+  &__gray--combined_left {
+    background: #5E6977;
+    border-radius: 6px 0 0 6px;
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
+
+    .button__primary {
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
+    &__header {
+      padding: $xl_margin;
+      color: $white;
+      font-weight: 300;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    &__text {
+      text-align: center;
+      color: #BDC6CF;
+      padding: $xl_margin $xl_margin $m_margin $xl_margin;
+      margin: 0;
+      line-height: 1.8em;
+    }
+  }
+
+  &__white--combined_right {
+    background: $white;
+    border-radius: 0 6px 6px 0;
+    box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1);
+
+    &__header {
+      padding: $xl_margin;
+      color: $font;
+      font-weight: 300;
+      font-size: 26px;
+      text-align: center;
+    }
+
+    &__text {
+      text-align: center;
+
+      .button__primary {
+        margin-top: 3 * $xl_margin;
+      }
+    }
+  }
+}

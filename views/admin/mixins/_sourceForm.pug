@@ -1,0 +1,10 @@
+mixin sourceForm()
+    form.form(action="/admin/sources" method="POST")
+        h2.form__header Bron toevoegen
+        p.content__white--combined_right__text Voeg een bron toe met unieke codes
+        .form__placeholder
+            input(type="text" placeholder="Bron naam" name="sourceName" class="input input__field")
+        .form__placeholder
+            input(type="number" name="sourceCodesTotal" placeholder="Aantal unieke codes voor de bron" class="input input__field")
+        .form__placeholder
+            input(type="submit" value="Toevoegen" class="input input__button input__button")

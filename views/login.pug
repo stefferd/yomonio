@@ -1,0 +1,18 @@
+extends layout
+
+include mixins/_loginForm
+
+block content
+
+block alternate
+    .content.content__alternate
+        .container
+            .columns.is_mobile
+                .column.is-10.is-offset-1
+                    .inner_content.columns
+                        .column.is-half.content__gray--combined_left
+                            h2.content__gray--combined_left__header I'm New Here
+                            p.content__gray--combined_left__text Creating an account quick and easy. You can also store multiple shipping addresses, gain access to your order history, and much more.
+                            a.button.button__primary(href="/register" title="Create an account") Sign Up
+                        .column.is-half.content__white--combined_right
+                            +loginForm()

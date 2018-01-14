@@ -1,0 +1,23 @@
+extends layout
+
+block alternate
+    .content.content__alternate
+        .container
+            .columns.is_mobile
+                .column.is-10.is-offset-1
+                    .inner_content.columns
+                        .column.content__white
+                            form.form(action="/register" method="POST")
+                                h2.form__header= title
+                                .form__placeholder.form__placeholder--first.form__placeholder--alternate
+                                    input.input.input__field(type="text" name="sourceCode" placeholder="Unique code" value=body.sourceCode required)
+                                .form__placeholder.form__placeholder--first
+                                    input.input.input__field(type="text" name="name" placeholder="Name" value=body.name required)
+                                .form__placeholder
+                                    input.input.input__field(type="text" name="email" placeholder="Email" value=body.email required)
+                                .form__placeholder
+                                    input.input.input__field(type="password" name="password" placeholder="Password" value=body.password required)
+                                .form__placeholder
+                                    input.input.input__field(type="password" name="password-confirm" placeholder="Confirm Password" value=body['password-confirm'] required)
+                                .form__placeholder.form__placeholder--last
+                                    input.input.input__button.input__button--primary(type="submit" value="Sign Up")

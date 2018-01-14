@@ -1,0 +1,10 @@
+mixin loginForm()
+    form.form(action="/login" method="POST")
+        h2.form__header I'm Already Registered
+        p.content__white--combined_right__text Please login to your account
+        .form__placeholder
+            input(type="email" placeholder="Email" name="email" class="input input__field")
+        .form__placeholder
+            input(type="password" name="password" placeholder="Password" class="input input__field")
+        .form__placeholder
+            input(type="submit" value="Log In" class="input input__button input__button")
