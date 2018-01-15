@@ -57,7 +57,7 @@ block content
         .column-8.center-align
           h2 Interesse? De Yomonio app is nog niet helemaal klaar
           p Maar als je je e-mailadres achterlaat, zorgen we dat jij de app als eerste kunt gebruiken
-          if (savedInterested)
+          if (!savedInterested)
             form.form(method="POST" action="/")
               .form__placeholder.inline--button
                 input(type="email" name="email" class="input input__field" placeholder="Uw email")
