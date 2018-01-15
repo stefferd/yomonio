@@ -1,0 +1,20 @@
+extends layout
+
+include mixins/_blockEditForm
+
+block content
+    .content
+        .container
+            .columns.is-mobile
+                .column.is-12
+                    .inner_content.columns
+                        .column.content__white
+                            h1 Blok bewerken
+block alternate
+    .content.content__alternate
+        .container
+            .columns.is_mobile
+                .column.is-10.is-offset-1
+                    .inner_content.columns
+                        .column.content__white
+                            +blockEditForm(block)

@@ -194,21 +194,35 @@ exports.save = async (req, res) => {
 };
 
 exports.edit = async (req, res) => {
-    console.log(req.params);
-    const page = await Page.findOne({_id: req.params.pageId});
-    const block = await Block.findOne({ _id: req.params.blockId });
-    console.log(page, block);
-    if (page) {
-        res.render('admin/block-add', {
+    const block = await BlockItem.findOne({ _id: req.params.blockId });
+    if (block) {
+        res.render('admin/block-edit', {
             title: 'Blok bewerken',
             body: req.body,
             flashes: req.flash(),
-            page,
             blockId: req.params.blockId,
-            pageId: req.params.pageId,
             block
         });
     } else {
         res.redirect('admin/pages');
     }
+};
+
+exports.update = async (req, res) => {
+    const block = await BlockItem.findOne({ _id: req.params.blockId });
+    console.log(req.body, block);
+    if (block) {
+        if (block.type !== 'img') {
+            block.content = req.body.content;
+            await block.save();
+            res.redirect('/admin/pages');
+        }
+    } else {
+        res.redirect('admin/pages');
+    }
+};
+
+exports.remove = async (req, res) => {
+    await Block.findOne({ _id: req.params.blockId }).remove();
+    res.redirect('/admin/pages');
 };

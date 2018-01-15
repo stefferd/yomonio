@@ -8,4 +8,18 @@ $( document ).ready(function() {
             $('#'+selectedValue).css('display', 'block');
         });
     }
+
+    var $notYet = $('#not-yet');
+    if ($notYet) {
+        $('.trigger-modal').on('click', function() {
+            $notYet.attr('style', 'display: block;');
+        });
+        $notYet.on('click', function(event) {
+            var eventTarget = $(event.target);
+            console.log(eventTarget);
+            if (eventTarget.hasClass('modal-underlay')) {
+                $notYet.attr('style', 'display: none;');
+            }
+        })
+    }
 });

@@ -1,0 +1,22 @@
+mixin blockEditForm(givenBlock = {})
+    form.form(action=`/admin/block-edit/${blockId}` method="POST")
+        h2.form__header Blok bewerken
+        p.content__white--combined_right__text Pas de content naar wens aan
+
+        p=givenBlock
+        if givenBlock.type === 'h1'
+            .form__placeholder
+                input(type="text" placeholder="Content" name="content" class="input input__field" value=givenBlock.content)
+        else if givenBlock.type === 'p'
+            .form__placeholder
+                textarea(placeholder="Hero tekst" name="content" class="input input__textarea")=givenBlock.content
+        else if givenBlock.type === 'img'
+            img(src=`uploads/${block.content}` title="Current image")
+            .form__placeholder
+                input(type="file" name="photo" class="input input__image" accept="image/gif, image/png, image/jpeg")
+
+        input(type="hidden" name="type" value=givenBlock.type)
+
+
+        .form__placeholder
+            input(type="submit" value="Blok aanpassen" class="input input__button input__button")

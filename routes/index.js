@@ -49,10 +49,16 @@ router.get('/admin/block-add/:id',
     catchErrors(blockController.add)
 );
 
-router.get('/admin/block-edit/:pageId/:blockId',
+router.get('/admin/block-edit/:blockId',
     authController.isLoggedIn,
     authController.isAdmin,
     catchErrors(blockController.edit)
+);
+
+router.post('/admin/block-edit/:blockId',
+    authController.isLoggedIn,
+    authController.isAdmin,
+    catchErrors(blockController.update)
 );
 
 router.post('/admin/block-add/:id',
@@ -62,4 +68,10 @@ router.post('/admin/block-add/:id',
     blockController.resize,
     blockController.save
 );
+
+router.get('/admin/block-remove/:blockId',
+    authController.isLoggedIn,
+    authController.isAdmin,
+    blockController.remove
+)
 module.exports = router;

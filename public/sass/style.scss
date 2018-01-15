@@ -30,6 +30,7 @@ h1, h2, h3, h4, h5 {
 @import 'components/flash';
 @import 'components/footer';
 @import 'components/grid';
+@import 'components/modal';
 
 body {
   color: $font;
@@ -70,11 +71,23 @@ h5 { font-size: 130%; }
 }
 
 .hero {
-  background-color: #358ED7;
+  background-color: #ef869c;
   color: #FFF;
 
-  h1 {
+  p {
     margin-top: 15%;
+    font-size: 1.4em;
+  }
+
+  .button--primary {
+    background-color: #18d3a2;
+    text-align: center;
+    color: #FFF;
+    border: 1px solid #9ad1bf;
+    margin: 10px 0;
+    font-weight: 500;
+    font-size: 1.6em;
+    line-height: 1.2;
   }
 }
 
@@ -95,5 +108,33 @@ h5 { font-size: 130%; }
 
   h2 {
     margin-top: 10%;
+  }
+}
+
+.show-edit-on-hover {
+
+  .edit {
+    display: none;
+    float: right;
+  }
+
+  &:hover {
+    .edit {
+      display: block;
+    }
+  }
+}
+
+.show-block-remove-on-hover {
+
+  .remove {
+    display: none;
+    float: right;
+  }
+
+  &:hover {
+    .remove {
+      display: block;
+    }
   }
 }

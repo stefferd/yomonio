@@ -10,8 +10,8 @@ block content
             .row.hero
               .column-1=" "
               .column-7
-                h1 #{block.items[0].content}
                 p #{block.items[1].content}
+                button.button.button--primary(src="#interesse" title=block.items[0].content) #{block.items[0].content}
               .column-3
                 img(src=`/uploads/${block.items[2].content}` title="hero image")
               .column-1=" "
@@ -20,8 +20,9 @@ block content
               .column-2=" "
               .column-8.center-align
                 h2 #{block.items[0].content}
-                p App Store
-                p Google play store
+                .downloads
+                  img.trigger-modal(src="/images/app-store-badge.svg" style="cursor: pointer;")
+                  img.trigger-modal(src="/images/google-play-badge.png" style="height: 59px!important; position: relative; top: 10px;cursor: pointer;")
               .column-2=" "
             .row.preview
               .column-2=" "
@@ -48,3 +49,17 @@ block content
                   h2 #{block.items[0].content}
                   p #{block.items[1].content}
                 .column-1=" "
+  .modal-underlay#not-yet(style="display: none;")
+    .modal
+      .modal__header
+        h3 Dank voor je interesse in Momonio
+      .modal__content
+        p We zijn nog bezig met de ontwikkeling van de app. Wil je op de hoogte gehouden worden? En als eerste de app gebruiken?
+        p Laat dan hier je naam en telefoonnummer achter
+        form.form(method="POST" action="/")
+          .form__placeholder
+            input(type="text" name="naam" class="input input__field" placeholder="Uw naam")
+          .form__placeholder
+            input(type="text" name="telefoonnummer" class="input input__field" placeholder="Uw telefoonnummer")
+          .form__placeholder
+            input(type="submit" value="Hou mij op de hoogte" class="input input__button input__button")

@@ -20,6 +20,7 @@ block content
                                 dt Aangemaakt door
                                 dd #{page.author.name}
 block alternate
+    - let features = 0;
     .content.content__alternate
         .container
             .columns.is_mobile
@@ -27,13 +28,83 @@ block alternate
                     .inner_content.columns
                         .column.content__white
                             if blocks.length > 0
-                                each block in blocks
-                                    p #{block.template}
-                                    if block.items && block.items.length > 0
-                                        each item in block.items
-                                            p #{item.type} : #{item.content}
-                                    else
-                                        a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
+                                .is-full
+                                    each block in blocks
+                                        if block.template === 'hero'
+                                            .row.hero.show-block-remove-on-hover
+                                                span.remove
+                                                    a(href=`/admin/block-remove/${block._id}` title="Blok verwijderen") Verwijderen
+                                                if block.items && block.items.length > 0
+                                                    .column-1=" "
+                                                    .column-7.show-edit-on-hover
+                                                        h1
+                                                            | #{block.items[0].content}
+                                                            span.edit
+                                                                a(href=`/admin/block-edit/${block.items[0]._id}` title="Blok bewerken") Bewerken
+                                                        p
+                                                            | #{block.items[1].content}
+                                                            span.edit
+                                                                a(href=`/admin/block-edit/${block.items[1]._id}` title="Blok bewerken") Bewerken
+                                                    .column-3
+                                                        img(src=`/uploads/${block.items[2].content}` title="hero image")
+                                                    .column-1=" "
+                                                else
+                                                    a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
+                                        else if block.template === 'preview'
+                                            .row.preview.show-block-remove-on-hover
+                                                span.remove
+                                                    a(href=`/admin/block-remove/${block._id}` title="Blok verwijderen") Verwijderen
+                                                if block.items && block.items.length > 0
+                                                    .row.preview
+                                                        .column-2=" "
+                                                        .column-8.center-align.show-edit-on-hover
+                                                            h2
+                                                                | #{block.items[0].content}
+                                                                span.edit
+                                                                    a(href=`/admin/block-edit/${block.items[0]._id}` title="Blok bewerken") Bewerken
+                                                            p App Store
+                                                            p Google play store
+                                                        .column-2=" "
+                                                    .row.preview
+                                                        .column-2=" "
+                                                        .column-8.center-align
+                                                            img(src=`/uploads/${block.items[1].content}` title="hero image")
+                                                        .column-2=" "
+                                                else
+                                                    a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
+                                        else if block.template === 'features'
+                                            if block.items && block.items.length > 0
+                                                - features++;
+                                                if features % 2 === 0 && features !== 1
+                                                    .row.feature.show-block-remove-on-hover
+                                                        span.remove
+                                                            a(href=`/admin/block-remove/${block._id}` title="Blok verwijderen") Verwijderen
+                                                        .column-1=" "
+                                                        .column-7.show-edit-on-hover
+                                                            h2
+                                                             | #{block.items[0].content}
+                                                             span.edit
+                                                                a(href=`/admin/block-edit/${block.items[0]._id}` title="Blok bewerken") Bewerken
+                                                            p
+                                                                | #{block.items[1].content}
+                                                                span.edit
+                                                                    a(href=`/admin/block-edit/${block.items[1]._id}` title="Blok bewerken") Bewerken
+                                                        .column-3.center-align
+                                                            img(src=`/uploads/${block.items[2].content}` title="feature image")
+                                                        .column-1=" "
+                                                else
+                                                    .row.feature.show-block-remove-on-hover
+                                                        span.remove
+                                                            a(href=`/admin/block-remove/${block._id}` title="Blok verwijderen") Verwijderen
+                                                        .column-1=" "
+                                                        .column-3.left-align
+                                                            img(src=`/uploads/${block.items[2].content}` title="feature image")
+                                                        .column-7
+                                                            h2 #{block.items[0].content}
+                                                            p #{block.items[1].content}
+                                                        .column-1=" "
+                                            else
+                                                a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
 
                             else
                                 p Er zijn nog geen content blokken toegevoegd
