@@ -3,15 +3,18 @@ extends layout
 block content
   - let features = 0;
   .inner_content
+    .logo
+      img.logo-img(src="/images/yomonio-logo.png" alt="Yomonio")
     .is-full
       if blocks && blocks.length > 0
         each block in blocks
           if block.template === 'hero'
             .row.hero
               .column-1=" "
-              .column-7
+              .column-5
                 p #{block.items[1].content}
                 button.button.button--primary(src="#interesse" title=block.items[0].content) #{block.items[0].content}
+              .column-2=" "
               .column-3
                 img(src=`/uploads/${block.items[2].content}` title="hero image")
               .column-1=" "
@@ -32,23 +35,39 @@ block content
           else if block.template === 'features'
             - features++;
             if features % 2 === 0 && features !== 1
-              .row.feature
+              .row.feature.feature-bg
                 .column-1=" "
-                .column-7
+                .column-3
                   h2 #{block.items[0].content}
                   p #{block.items[1].content}
-                .column-3.center-align
+                .column-4=" "
+                .column-4.center-align
                   img(src=`/uploads/${block.items[2].content}` title="feature image")
-                .column-1=" "
             else
               .row.feature
                 .column-1=" "
-                .column-3.left-align
-                  img(src=`/uploads/${block.items[2].content}` title="feature image")
-                .column-7
+                .column-3
                   h2 #{block.items[0].content}
                   p #{block.items[1].content}
-                .column-1=" "
+                .column-4=" "
+                .column-4.right-align
+                  img(src=`/uploads/${block.items[2].content}` title="feature image")
+      .row.interesse
+        .column-2=" "
+        .column-8.center-align
+          h2 Interesse? De Yomonio app is nog niet helemaal klaar
+          p Maar als je je e-mailadres achterlaat, zorgen we dat jij de app als eerste kunt gebruiken
+          if (savedInterested)
+            form.form(method="POST" action="/")
+              .form__placeholder.inline--button
+                input(type="email" name="email" class="input input__field" placeholder="Uw email")
+                input(type="submit" value="Verstuur" class="input input__button inline__button")
+              em We gebruiken je e-mailadres nergens anders voor... beloofd
+          else
+            p.green Gelukt! We hebben je e-mailadres ontvangen. Je hoort snel van ons!
+        .column-2=" "
+
+
   .modal-underlay#not-yet(style="display: none;")
     .modal
       .modal__header

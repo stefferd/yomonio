@@ -24,6 +24,7 @@ require('./models/User');
 require('./models/Page');
 require('./models/Block');
 require('./models/BlockItem');
+require('./models/Interested');
 
 
 // Start our app!

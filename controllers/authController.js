@@ -6,9 +6,9 @@ const User = mongoose.model('User');
 const mail = require('./../handlers/email');
 
 exports.login = passport.authenticate('local', {
-    failureRedirect: '/login',
+    failureRedirect: '/admin/login',
     failureFlash: 'Failed login!',
-    successRedirect: '/',
+    successRedirect: '/admin/pages',
     successFlash: 'You are now logged in!'
 });
 

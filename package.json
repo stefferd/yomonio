@@ -1,10 +1,10 @@
 {
-  "name": "momonio",
+  "name": "yomonio",
   "version": "0.0.1",
   "engines": {
     "node": "= 7.10"
   },
-  "description": "Webapp to promote monio",
+  "description": "Webapp to promote yomonio",
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stefferd/momonio.git"
+    "url": "git+https://github.com/stefferd/yomonio.git"
   },
   "author": "S. van den Berg <stef@dexperts.nl>",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/stefferd/arrivavoordeelpas/issues"
+    "url": "https://github.com/stefferd/yomonio/issues"
   },
-  "homepage": "https://github.com/stefferd/arrivavoordeelpas#readme",
+  "homepage": "https://github.com/stefferd/yomonio#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
     "bulma": "^0.5.1",

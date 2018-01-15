@@ -208,6 +208,25 @@ exports.edit = async (req, res) => {
     }
 };
 
+exports.editContent = async (req, res) => {
+    const page = await Page.findOne({_id: req.params.pageId});
+    const block = await Block.findOne({ _id: req.params.blockId });
+    console.log(page, block);
+    if (page) {
+        res.render('admin/block-add', {
+            title: 'Blok bewerken',
+            body: req.body,
+            flashes: req.flash(),
+            page,
+            blockId: req.params.blockId,
+            pageId: req.params.pageId,
+            block
+        });
+    } else {
+        res.redirect('admin/pages');
+    }
+};
+
 exports.update = async (req, res) => {
     const block = await BlockItem.findOne({ _id: req.params.blockId });
     console.log(req.body, block);

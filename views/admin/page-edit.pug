@@ -48,8 +48,8 @@ block alternate
                                                     .column-3
                                                         img(src=`/uploads/${block.items[2].content}` title="hero image")
                                                     .column-1=" "
-                                                else
-                                                    a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
+
+                                                a(href=`/admin/block-content/${page._id}/${block._id}` title="Bewerken") Content Bewerken
                                         else if block.template === 'preview'
                                             .row.preview.show-block-remove-on-hover
                                                 span.remove
@@ -71,7 +71,7 @@ block alternate
                                                             img(src=`/uploads/${block.items[1].content}` title="hero image")
                                                         .column-2=" "
                                                 else
-                                                    a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
+                                                    a(href=`/admin/block-content/${page._id}/${block._id}` title="Bewerken") Content Bewerken
                                         else if block.template === 'features'
                                             if block.items && block.items.length > 0
                                                 - features++;
@@ -99,12 +99,18 @@ block alternate
                                                         .column-1=" "
                                                         .column-3.left-align
                                                             img(src=`/uploads/${block.items[2].content}` title="feature image")
-                                                        .column-7
-                                                            h2 #{block.items[0].content}
-                                                            p #{block.items[1].content}
+                                                        .column-7.show-edit-on-hover
+                                                            h2
+                                                                | #{block.items[0].content}
+                                                                span.edit
+                                                                    a(href=`/admin/block-edit/${block.items[0]._id}` title="Blok bewerken") Bewerken
+                                                            p
+                                                                | #{block.items[1].content}
+                                                                span.edit
+                                                                    a(href=`/admin/block-edit/${block.items[1]._id}` title="Blok bewerken") Bewerken
                                                         .column-1=" "
                                             else
-                                                a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
+                                                a(href=`/admin/block-content/${page._id}/${block._id}` title="Bewerken") Content Bewerken
 
                             else
                                 p Er zijn nog geen content blokken toegevoegd

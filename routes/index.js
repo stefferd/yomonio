@@ -10,7 +10,10 @@ const blockController = require('../controllers/admin/blockController');
 const landingController = require('../controllers/landingController');
 
 router.get('/', landingController.home);
-// router.get('/', importController.convert);
+router.post('/',
+    landingController.saveEmail,
+    landingController.home
+);
 
 router.get('/admin/login', userController.loginForm);
 router.post('/admin/login', authController.login);
@@ -53,6 +56,12 @@ router.get('/admin/block-edit/:blockId',
     authController.isLoggedIn,
     authController.isAdmin,
     catchErrors(blockController.edit)
+);
+
+router.get('/admin/block-content/:pageId/:blockId',
+    authController.isLoggedIn,
+    authController.isAdmin,
+    catchErrors(blockController.editContent)
 );
 
 router.post('/admin/block-edit/:blockId',
