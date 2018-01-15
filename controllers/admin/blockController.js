@@ -31,7 +31,7 @@ exports.resize = async (req, res, next) => {
     req.body.photo = `${uuid.v4()}.${extension}`;
     // resize the image
     const photo = await jimp.read(req.file.buffer);
-    await photo.write(`/public/uploads/${req.body.photo}`);
+    await photo.write(`./public/uploads/${req.body.photo}`);
     // and continue!
     next();
 };
@@ -42,9 +42,9 @@ exports.home = async (req, res) => {
 };
 
 exports.add = (req, res) => {
-    const blockId = req.params.id;
+    const pageId = req.params.id;
 
-    res.render('admin/block-add', { title: 'Blok toevoegen', blockId});
+    res.render('admin/block-add', { title: 'Blok toevoegen', pageId, block: {}});
 };
 
 exports.validate = (req, res, next) => {
@@ -61,11 +61,10 @@ exports.validate = (req, res, next) => {
     next();
 };
 
-exports.save = async (req, res) => {
-    const blocks = await Block.find({page: req.params.id});
+exports.saveBlockItems = async(req, res, next) => {
     const blockItems = [];
-    console.log(req.body);
-    if (req.body.template === 'hero') {
+    console.log(req.body, 'hero');
+    if (req.body.template === 'hero' || req.body.template === 'features') {
         const blockItemTitle = {
             name: 'hero-title',
             content: req.body.title,
@@ -73,8 +72,7 @@ exports.save = async (req, res) => {
             author: req.user._id
         };
         let saveBlockItem = await(new BlockItem(blockItemTitle)).save();
-        console.log(saveBlockItem, 'sbe savedBlockItem');
-        blockItems.push(saveBlockItem._id);
+        blockItems.push({ item: saveBlockItem._id});
         const blockItemText = {
             name: 'hero-text',
             content: req.body.text,
@@ -82,36 +80,134 @@ exports.save = async (req, res) => {
             author: req.user._id
         };
         let savedBlockItemText = await(new BlockItem(blockItemText)).save();
-        blockItems.push(savedBlockItemText._id);
+        blockItems.push({ item: savedBlockItemText._id });
         const blockItemImage = {
             name: 'hero-image',
-            content: req.body.image,
+            content: req.files.photo,
             type: 'img',
             author: req.user._id
         };
         let savedBlockItemImage = await(new BlockItem(blockItemImage)).save();
-        blockItems.push(savedBlockItemImage._id);
+        blockItems.push({ item: savedBlockItemImage._id});
+    } else if (req.body.template === 'preview') {
+        const blockItemTitle = {
+            name: 'hero-title',
+            content: req.body.title,
+            type: 'h1',
+            author: req.user._id
+        };
+        let saveBlockItem = await(new BlockItem(blockItemTitle)).save();
+        blockItems.push({ item: saveBlockItem._id});
+        const blockItemImage = {
+            name: 'hero-image',
+            content: req.files.photo,
+            type: 'img',
+            author: req.user._id
+        };
+        let savedBlockItemImage = await(new BlockItem(blockItemImage)).save();
+        blockItems.push({ item: savedBlockItemImage._id});
     }
-    console.log(blockItems,'sbe blockItems saved');
+    req.body.blockItems = blockItems;
+    next();
+};
 
-    const nextBlockSorting = blocks.length + 1;
-    const block = {
-        template: req.body.template,
-        sorting: nextBlockSorting,
-        page: req.params.id,
-        author: req.user._id,
-        blockItems: blockItems
-    };
-    await(new Block(block)).save();
+exports.save = async (req, res) => {
+    if (req.body.givenBlockId !== '') {
+        const operator = '$addToSet';
+        if (req.body.template === 'hero' || req.body.template === 'features') {
+            const blockItemTitle = {
+                name: 'hero-title',
+                content: req.body.title,
+                type: 'h1',
+                author: req.user._id
+            };
+            let saveBlockItem = await(new BlockItem(blockItemTitle)).save();
+            await Block.findByIdAndUpdate(
+                req.body.givenBlockId,
+                { [operator]: { items: saveBlockItem._id }},
+                { new: true}
+            );
+            const blockItemText = {
+                name: 'hero-text',
+                content: req.body.text,
+                type: 'p',
+                author: req.user._id
+            };
+            let savedBlockItemText = await(new BlockItem(blockItemText)).save();
+            await Block.findByIdAndUpdate(
+                req.body.givenBlockId,
+                { [operator]: { items: savedBlockItemText._id }},
+                { new: true}
+            );
+            const blockItemImage = {
+                name: 'hero-image',
+                content: req.body.photo,
+                type: 'img',
+                author: req.user._id
+            };
+            let savedBlockItemImage = await(new BlockItem(blockItemImage)).save();
+            await Block.findByIdAndUpdate(
+                req.body.givenBlockId,
+                { [operator]: { items: savedBlockItemImage._id }},
+                { new: true}
+            );
+        } else if (req.body.template === 'preview') {
+            const blockItemTitle = {
+                name: 'hero-title',
+                content: req.body.title,
+                type: 'h1',
+                author: req.user._id
+            };
+            let saveBlockItem = await(new BlockItem(blockItemTitle)).save();
+            await Block.findByIdAndUpdate(
+                req.body.givenBlockId,
+                { [operator]: { items: saveBlockItem._id }},
+                { new: true}
+            );
+            const blockItemImage = {
+                name: 'hero-image',
+                content: req.body.photo,
+                type: 'img',
+                author: req.user._id
+            };
+            let savedBlockItemImage = await(new BlockItem(blockItemImage)).save();
+            await Block.findByIdAndUpdate(
+                req.body.givenBlockId,
+                { [operator]: { items: savedBlockItemImage._id }},
+                { new: true}
+            );
+        }
+    } else {
+        const blocks = await Block.find({page: req.params.id});
+        const nextBlockSorting = blocks.length + 1;
+        const block = {
+            template: req.body.template,
+            sorting: nextBlockSorting,
+            page: req.params.id,
+            author: req.user._id,
+            blockItems: req.body.blockItems
+        };
+        await(new Block(block)).save();
+    }
+
     res.redirect(`/admin/pages/${req.params.id}`);
 };
 
 exports.edit = async (req, res) => {
-    const page = await Page.findOne({_id: req.params.id});
-    const blocks = await Block.find({ block: req.params.id });
-
+    console.log(req.params);
+    const page = await Page.findOne({_id: req.params.pageId});
+    const block = await Block.findOne({ _id: req.params.blockId });
+    console.log(page, block);
     if (page) {
-        res.render('admin/page-edit', { title: 'Pagina bewerken', body: req.body, flashes: req.flash(), page, blocks });
+        res.render('admin/block-add', {
+            title: 'Blok bewerken',
+            body: req.body,
+            flashes: req.flash(),
+            page,
+            blockId: req.params.blockId,
+            pageId: req.params.pageId,
+            block
+        });
     } else {
         res.redirect('admin/pages');
     }

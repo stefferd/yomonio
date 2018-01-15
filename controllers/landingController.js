@@ -1,5 +1,10 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Page = mongoose.model('Page');
+const Block = mongoose.model('Block');
+const BlockItem = mongoose.model('BlockItem');
 
-exports.home = (req, res) => {
-    res.render('index', { title: 'App bla bla bla', body: req.body });
+exports.home = async (req, res) => {
+    const page = await Page.findOne({ slug: '/'});
+    const blocks = await Block.find({ page: page._id });
+    res.render('index', { title: page.name, body: req.body, blocks });
 };

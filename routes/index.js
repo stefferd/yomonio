@@ -34,7 +34,7 @@ router.get('/admin/pages',
 router.get('/admin/pages/:id',
     authController.isLoggedIn,
     authController.isAdmin,
-    catchErrors(pagesController.edit)
+    pagesController.edit
 );
 router.post('/admin/pages',
     authController.isLoggedIn,
@@ -49,7 +49,7 @@ router.get('/admin/block-add/:id',
     catchErrors(blockController.add)
 );
 
-router.get('/admin/block-edit/:id',
+router.get('/admin/block-edit/:pageId/:blockId',
     authController.isLoggedIn,
     authController.isAdmin,
     catchErrors(blockController.edit)
@@ -59,7 +59,7 @@ router.post('/admin/block-add/:id',
     authController.isLoggedIn,
     authController.isAdmin,
     blockController.upload,
-    catchErrors(blockController.resize),
-    catchErrors(blockController.save)
+    blockController.resize,
+    blockController.save
 );
 module.exports = router;

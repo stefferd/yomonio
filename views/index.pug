@@ -1,5 +1,50 @@
 extends layout
 
 block content
+  - let features = 0;
   .inner_content
-    p This is the homepage
+    .is-full
+      if blocks && blocks.length > 0
+        each block in blocks
+          if block.template === 'hero'
+            .row.hero
+              .column-1=" "
+              .column-7
+                h1 #{block.items[0].content}
+                p #{block.items[1].content}
+              .column-3
+                img(src=`/uploads/${block.items[2].content}` title="hero image")
+              .column-1=" "
+          else if block.template === 'preview'
+            .row.preview
+              .column-2=" "
+              .column-8.center-align
+                h2 #{block.items[0].content}
+                p App Store
+                p Google play store
+              .column-2=" "
+            .row.preview
+              .column-2=" "
+              .column-8.center-align
+                img(src=`/uploads/${block.items[1].content}` title="hero image")
+              .column-2=" "
+          else if block.template === 'features'
+            - features++;
+            if features % 2 === 0 && features !== 1
+              .row.feature
+                .column-1=" "
+                .column-7
+                  h2 #{block.items[0].content}
+                  p #{block.items[1].content}
+                .column-3.center-align
+                  img(src=`/uploads/${block.items[2].content}` title="feature image")
+                .column-1=" "
+            else
+              .row.feature
+                .column-1=" "
+                .column-3.left-align
+                  img(src=`/uploads/${block.items[2].content}` title="feature image")
+                .column-7
+                  h2 #{block.items[0].content}
+                  p #{block.items[1].content}
+                .column-1=" "

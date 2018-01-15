@@ -1,5 +1,5 @@
-mixin blockForm()
-    form.form(action=`/admin/block-add/${blockId}` method="POST" enctype="multipart/form-data")
+mixin blockForm(givenBlock = {})
+    form.form(action=`/admin/block-add/${pageId}` method="POST" enctype="multipart/form-data")
         h2.form__header Blok toevoegen
         p.content__white--combined_right__text Selecteer een template en vul de velden
         .form__placeholder
@@ -10,18 +10,38 @@ mixin blockForm()
                 option(value="download") Download
 
         .templates#hero
+            if givenBlock.items && givenBlock.items.length > 0
+                h1 #{givenBlock.items[0].content}
+                p #{givenBlock.items[1].content}
+                img(src=`/images/${givenBlock.items[2].content}` style="max-width: 200px;")
+            else
+                .form__placeholder
+                    input(type="text" placeholder="Hero titel" name="title" class="input input__field")
+                .form__placeholder
+                    textarea(placeholder="Hero tekst" name="text" class="input input__textarea")
+                .form__placeholder
+                    input(type="file" name="photo" class="input input__image" accept="image/gif, image/png, image/jpeg")
+        .templates#features(style="display: none")
+            if givenBlock.items && givenBlock.items.length > 0
+                h1 #{givenBlock.items[0].content}
+                p #{givenBlock.items[1].content}
+                img(src=`/images/${givenBlock.items[2].content}` style="max-width: 200px;")
+            else
+                .form__placeholder
+                    input(type="text" placeholder="Feature titel" name="title" class="input input__field")
+                .form__placeholder
+                    textarea(placeholder="Feature tekst" name="text" class="input input__textarea")
+                .form__placeholder
+                    input(type="file" name="photo" class="input input__image" accept="image/gif, image/png, image/jpeg")
+        .templates#preview(style="display: none")
             .form__placeholder
-                input(type="text" placeholder="Hero titel" name="title" class="input input__field")
-            .form__placeholder
-                textarea(placeholder="Hero tekst" name="text" class="input input__textarea")
+                input(type="text" placeholder="preview titel" name="title" class="input input__field")
             .form__placeholder
                 input(type="file" name="photo" class="input input__image" accept="image/gif, image/png, image/jpeg")
-        .templates#features(style="display: none")
-            Dit is voor de feature
-        .templates#preview(style="display: none")
-            Dit is voor de preview
         .templates#download(style="display: none")
             Dit is voor de download
+        - const givenBlockId = (givenBlock && givenBlock._id) ? givenBlock._id : '';
+        input(type="hidden" name="givenBlockId" value=givenBlockId)
 
         .form__placeholder
             input(type="submit" value="Blok opslaan" class="input input__button input__button")

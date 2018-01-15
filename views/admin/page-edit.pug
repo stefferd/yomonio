@@ -29,9 +29,11 @@ block alternate
                             if blocks.length > 0
                                 each block in blocks
                                     p #{block.template}
-                                    each blockItem in block.blockItems
-                                        #{blockItem.content}
-                                    a(href="#" title="Bewerken") Bewerken
+                                    if block.items && block.items.length > 0
+                                        each item in block.items
+                                            p #{item.type} : #{item.content}
+                                    else
+                                        a(href=`/admin/block-edit/${page._id}/${block._id}` title="Bewerken") Bewerken
 
                             else
                                 p Er zijn nog geen content blokken toegevoegd

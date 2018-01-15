@@ -13,14 +13,9 @@ const routes = require('./routes/index');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
 require('./handlers/passportSettings');
-const fileUpload = require('express-fileupload');
-const multer = require('multer');
 
 // create our Express app
 const app = express();
-
-// default options
-app.use(fileUpload());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views')); // this is the folder where we keep our pug files

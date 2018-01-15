@@ -48,6 +48,8 @@ exports.edit = async (req, res) => {
     const page = await Page.findOne({_id: req.params.id});
     const blocks = await Block.find({ page: req.params.id });
 
+    console.log(blocks);
+
     if (page) {
         res.render('admin/page-edit', { title: 'Pagina bewerken', body: req.body, flashes: req.flash(), page, blocks });
     } else {

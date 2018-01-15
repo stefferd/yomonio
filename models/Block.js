@@ -27,13 +27,13 @@ const blockSchema = new Schema({
         ref: 'User',
         required: 'You must supply an user'
     },
-    blockItems: [{ type : mongoose.Schema.ObjectId, ref: 'BlockItem' }]
+    items: [ { type: mongoose.Schema.ObjectId, ref: 'BlockItem' } ]
 });
 
 function autopopulate(next) {
     this.populate('author');
     this.populate('page');
-    this.populate('blockItems');
+    this.populate('items');
     next();
 }
 
