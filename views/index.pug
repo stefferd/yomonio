@@ -13,7 +13,7 @@ block content
               .column-1=" "
               .column-5
                 p #{block.items[1].content}
-                button.button.button--primary(src="#interesse" title=block.items[0].content) #{block.items[0].content}
+                a.button.button--primary(href="#interesse" title=block.items[0].content) #{block.items[0].content}
               .column-2=" "
               .column-3
                 img(src=`/uploads/${block.items[2].content}` title="hero image")
@@ -55,6 +55,7 @@ block content
       .row.interesse
         .column-2=" "
         .column-8.center-align
+          a(name="interesse")
           h2 Interesse? De Yomonio app is nog niet helemaal klaar
           p Maar als je je e-mailadres achterlaat, zorgen we dat jij de app als eerste kunt gebruiken
           if (!savedInterested)
