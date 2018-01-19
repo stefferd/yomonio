@@ -1390,7 +1390,8 @@ em {
         text-align: center;
         width: 100%; }
       .feature .button--primary {
-        margin: 20px auto; }
+        margin: 20px auto;
+        font-size: 15px; }
       .feature .column-5.align-center {
         height: 451px; }
       .feature.feature-bg h2 {
