@@ -4,7 +4,7 @@ block content
   - let features = 0;
   .inner_content
     .logo
-      img.logo-img(src="/images/yomonio-logo.png" alt="Yomonio")
+      img.logo-img(src="/images/yomonio-logo@2.png" alt="Yomonio" width="156" height="59")
     .is-full
       if blocks && blocks.length > 0
         each block in blocks
@@ -14,8 +14,7 @@ block content
               .column-5
                 p #{block.items[1].content}
                 a.button.button--primary(href="#interesse" title=block.items[0].content) #{block.items[0].content}
-              .column-2=" "
-              .column-3
+              .column-5.align-center
                 img(src=`/uploads/${block.items[2].content}` title="hero image")
               .column-1=" "
           else if block.template === 'preview'
@@ -37,20 +36,18 @@ block content
             if features % 2 === 0 && features !== 1
               .row.feature.feature-bg
                 .column-1=" "
-                .column-3
+                .column-4
                   h2 #{block.items[0].content}
                   p #{block.items[1].content}
-                .column-4=" "
-                .column-4.center-align
+                .column-7.center-align
                   img(src=`/uploads/${block.items[2].content}` title="feature image")
             else
               .row.feature
                 .column-1=" "
-                .column-3
+                .column-4
                   h2 #{block.items[0].content}
                   p #{block.items[1].content}
-                .column-4=" "
-                .column-4.right-align
+                .column-7.right-align
                   img(src=`/uploads/${block.items[2].content}` title="feature image")
       .row.interesse
         .column-2=" "
@@ -58,14 +55,11 @@ block content
           a(name="interesse")
           h2 Interesse? De Yomonio app is nog niet helemaal klaar
           p Maar als je je e-mailadres achterlaat, zorgen we dat jij de app als eerste kunt gebruiken
-          if (!savedInterested)
-            form.form(method="POST" action="/")
-              .form__placeholder.inline--button
-                input(type="email" name="email" class="input input__field" placeholder="Uw email")
-                input(type="submit" value="Verstuur" class="input input__button inline__button")
-              em We gebruiken je e-mailadres nergens anders voor... beloofd
-          else
-            p.green Gelukt! We hebben je e-mailadres ontvangen. Je hoort snel van ons!
+          .form__placeholder.inline--button#interestedEmail
+            input(type="email" name="email" id="email" class="input input__field" placeholder="Uw email")
+            input(type="button" value="Verstuur" class="input input__button inline__button" onClick="registerInterested()")
+          p.green#interestedDone Gelukt! We hebben je e-mailadres ontvangen. Je hoort snel van ons!
+          em We gebruiken je e-mailadres nergens anders voor... beloofd
         .column-2=" "
 
 

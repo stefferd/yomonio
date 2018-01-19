@@ -23,6 +23,14 @@ $( document ).ready(function() {
         })
     }
 
+    window.registerInterested = function() {
+        $.post('/', { email: $('#email').val() })
+            .done(function() {
+                $('#interestedEmail').addClass('hidden');
+                $('#interestedDone').addClass('show');
+            });
+    }
+
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
