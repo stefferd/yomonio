@@ -82,6 +82,23 @@ h5 { font-size: 130%; }
   width: 151px;
   height: 59px;
 }
+
+@media #{$breakpoint-small} {
+  .logo {
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+
+    img {
+      padding-top: 30px;
+      width: 151px;
+      height: 59px;
+    }
+  }
+}
 .hero {
   background-color: #ef869c;
   background-image: url('/images/hero-bg.png');
@@ -120,6 +137,22 @@ h5 { font-size: 130%; }
       width: 274px;
       height: 494px;
       background: none;
+    }
+  }
+
+  @media #{$breakpoint-small} {
+    text-align: center;
+
+    p {
+      text-align: center;
+    }
+
+    .button--primary {
+      margin: 20px auto;
+    }
+
+    .column-5.align-center {
+      height: 451px;
     }
   }
 }
@@ -245,6 +278,31 @@ em {
   img {
     margin: 8% 0;
     width: 500px;
+  }
+
+  @media #{$breakpoint-small} {
+    text-align: center;
+
+    h2 {
+      width: 100%;
+      margin-top: 20px;
+    }
+    p {
+      text-align: center;
+      width: 100%;
+    }
+
+    .button--primary {
+      margin: 20px auto;
+    }
+
+    .column-5.align-center {
+      height: 451px;
+    }
+
+    &.feature-bg h2 {
+      margin-top: 20px;
+    }
   }
 }
 
