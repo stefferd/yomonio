@@ -81,12 +81,14 @@ h5 { font-size: 130%; }
   left: 1%;
   width: 151px;
   height: 59px;
-}
 
-@media #{$breakpoint-small} {
-  .logo {
+  img {
+    width: 151px;
+    height: 59px;
+  }
+
+  @include respond-to('small') {
     margin: 0 auto;
-    position: absolute;
     top: 0;
     left: 0;
     text-align: center;
@@ -94,11 +96,21 @@ h5 { font-size: 130%; }
 
     img {
       padding-top: 30px;
-      width: 151px;
-      height: 59px;
+    }
+  }
+
+  @include respond-to('medium') {
+    top: 5%;
+    left: 1%;
+    width: 151px;
+    height: 59px;
+
+    img {
+      padding-top: 0;
     }
   }
 }
+
 .hero {
   background-color: #ef869c;
   background-image: url('/images/hero-bg.png');
@@ -140,7 +152,7 @@ h5 { font-size: 130%; }
     }
   }
 
-  @media #{$breakpoint-small} {
+  @include respond-to('small') {
     text-align: center;
 
     p {
@@ -153,6 +165,22 @@ h5 { font-size: 130%; }
 
     .column-5.align-center {
       height: 451px;
+    }
+  }
+
+  @include respond-to('medium') {
+    text-align: left;
+
+    p {
+      text-align: left;
+    }
+
+    .button--primary {
+      margin: 20px 0;
+    }
+
+    .column-5.align-center {
+      height: auto;
     }
   }
 }
@@ -280,7 +308,7 @@ em {
     width: 500px;
   }
 
-  @media #{$breakpoint-small} {
+  @include respond-to('small') {
     text-align: center;
 
     h2 {
@@ -303,6 +331,33 @@ em {
 
     &.feature-bg h2 {
       margin-top: 20px;
+    }
+  }
+
+  @include respond-to('medium') {
+    text-align: center;
+
+    h2 {
+      width: 260px;
+      margin-top: 25%;
+      text-align: left;
+    }
+    p {
+      text-align: left;
+      width: 305px;
+    }
+
+    .button--primary {
+      margin: 20px 0;
+      font-size: 17px;
+    }
+
+    .column-5.align-center {
+      height: auto;
+    }
+
+    &.feature-bg h2 {
+      margin-top: 100px;
     }
   }
 }

@@ -1094,7 +1094,7 @@ img {
   width: 100%;
   min-height: 1px; }
 
-@media only screen and (min-width: 30em) {
+@media (min-width: 992px) {
   .is-full {
     width: 100%;
     max-width: 100%; }
@@ -1223,19 +1223,26 @@ h5 {
   left: 1%;
   width: 151px;
   height: 59px; }
-
-@media only screen and (min-width: 20em) {
-  .logo {
-    margin: 0 auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    width: 100%; }
-    .logo img {
-      padding-top: 30px;
+  .logo img {
+    width: 151px;
+    height: 59px; }
+  @media (min-width: 340px) {
+    .logo {
+      margin: 0 auto;
+      top: 0;
+      left: 0;
+      text-align: center;
+      width: 100%; }
+      .logo img {
+        padding-top: 30px; } }
+  @media (min-width: 992px) {
+    .logo {
+      top: 5%;
+      left: 1%;
       width: 151px;
-      height: 59px; } }
+      height: 59px; }
+      .logo img {
+        padding-top: 0; } }
 
 .hero {
   background-color: #ef869c;
@@ -1269,7 +1276,7 @@ h5 {
       width: 274px;
       height: 494px;
       background: none; }
-  @media only screen and (min-width: 20em) {
+  @media (min-width: 340px) {
     .hero {
       text-align: center; }
       .hero p {
@@ -1278,6 +1285,15 @@ h5 {
         margin: 20px auto; }
       .hero .column-5.align-center {
         height: 451px; } }
+  @media (min-width: 992px) {
+    .hero {
+      text-align: left; }
+      .hero p {
+        text-align: left; }
+      .hero .button--primary {
+        margin: 20px 0; }
+      .hero .column-5.align-center {
+        height: auto; } }
 
 #mc_embed_signup {
   background: #fff;
@@ -1380,7 +1396,7 @@ em {
   .feature img {
     margin: 8% 0;
     width: 500px; }
-  @media only screen and (min-width: 20em) {
+  @media (min-width: 340px) {
     .feature {
       text-align: center; }
       .feature h2 {
@@ -1396,6 +1412,23 @@ em {
         height: 451px; }
       .feature.feature-bg h2 {
         margin-top: 20px; } }
+  @media (min-width: 992px) {
+    .feature {
+      text-align: center; }
+      .feature h2 {
+        width: 260px;
+        margin-top: 25%;
+        text-align: left; }
+      .feature p {
+        text-align: left;
+        width: 305px; }
+      .feature .button--primary {
+        margin: 20px 0;
+        font-size: 17px; }
+      .feature .column-5.align-center {
+        height: auto; }
+      .feature.feature-bg h2 {
+        margin-top: 100px; } }
 
 .preview {
   color: #2D2D2D; }
