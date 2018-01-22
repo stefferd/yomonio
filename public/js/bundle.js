@@ -93,11 +93,13 @@ $( document ).ready(function() {
     }
 
     window.registerInterested = function() {
-        $.post('/', { email: $('#email').val() })
-            .done(function() {
-                $('#interestedEmail').addClass('hidden');
-                $('#interestedDone').addClass('show');
-            });
+        if ($('#email').val() !== '') {
+            $.post('/', {email: $('#email').val()})
+                .done(function () {
+                    $('#interestedEmail').addClass('hidden');
+                    $('#interestedDone').addClass('show');
+                });
+        }
     }
 
     window.dataLayer = window.dataLayer || [];
