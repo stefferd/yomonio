@@ -9,8 +9,6 @@ block alternate
                         .column.content__white
                             form.form(action="/admin/register" method="POST")
                                 h2.form__header= title
-                                .form__placeholder.form__placeholder--first.form__placeholder--alternate
-                                    input.input.input__field(type="text" name="sourceCode" placeholder="Unique code" value=body.sourceCode required)
                                 .form__placeholder.form__placeholder--first
                                     input.input.input__field(type="text" name="name" placeholder="Name" value=body.name required)
                                 .form__placeholder

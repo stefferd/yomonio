@@ -36,7 +36,7 @@ exports.register = async (req, res) => {
     const user = await User.findOne({email: req.body.email});
 
     if (!user) {
-        const user = new User({ email: req.body.email, name: req.body.name });
+        const user = new User({ email: req.body.email, name: req.body.name, type: 'admin' });
         const register = promisify(User.register, User);
         await register(user, req.body.password);
         req.flash('success', 'Het aanmelden is gelukt, u kunt nu inloggen');
