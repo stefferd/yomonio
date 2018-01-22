@@ -3,7 +3,7 @@ const router = express.Router();
 const { catchErrors } = require('../handlers/errorHandlers');
 const userController = require('./../controllers/userController');
 const authController = require('./../controllers/authController');
-const dashboardController = require('./../controllers/dashboardController');
+const interestedController = require('./../controllers/admin/interestedController');
 const adminController = require('../controllers/admin/adminController');
 const pagesController = require('../controllers/admin/pagesController');
 const blockController = require('../controllers/admin/blockController');
@@ -33,6 +33,11 @@ router.get('/admin/pages',
     authController.isLoggedIn,
     authController.isAdmin,
     catchErrors(pagesController.home)
+);
+router.get('/admin/interested',
+    authController.isLoggedIn,
+    authController.isAdmin,
+    catchErrors(interestedController.home)
 );
 router.get('/admin/pages/:id',
     authController.isLoggedIn,

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    .content
+        .container
+            .columns.is-mobile
+                .column.is-12
+                    .inner_content.columns
+                        .column.content__white
+                            table.table(style="width: 80%")
+                                thead
+                                    tr
+                                        th(style="text-align: left;") Email
+                                        th(style="text-align: left;") Aangemeld op
+                                tbody
+                                    if interested.length > 0
+                                        each interest in interested
+                                            tr
+                                                td #{interest.email}
+                                                td(datetime=interest.created)= h.moment(interest.created).format('DD-MM-YYYY HH:mm')
+                                    else
+                                        tr
+                                            td(colspan=3) Er zijn nog geen email's
+
+block alternate

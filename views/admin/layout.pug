@@ -12,9 +12,12 @@ html
         header.header
           nav.nav
             ul.nav__section.nav__section--pages
-              li.nav__item(class=(currentPath.startsWith('/sources') ? 'nav__item--active' : ''))
-                a.nav__link(href='/admin/pages', class=(currentPath.startsWith('/pages') ? 'nav__link--active' : ''))
+              li.nav__item(class=(currentPath.startsWith('/admin/pages') ? 'nav__item--active' : ''))
+                a.nav__link(href='/admin/pages', class=(currentPath.startsWith('/admin/pages') ? 'nav__link--active' : ''))
                   span Pagina's
+              li.nav__item(class=(currentPath.startsWith('/admin/interested') ? 'nav__item--active' : ''))
+                a.nav__link(href='/admin/interested', class=(currentPath.startsWith('/admin/interested') ? 'nav__link--active' : ''))
+                  span Emails
             ul.nav__section.nav__section--logo
               li.nav__item
                 a.nav__link.nav__link--logo(href="/")
@@ -45,7 +48,7 @@ html
     .footer
       block footer
         .container
-          p.footer__copy &copy; 2017 DEXPERTS. All rights reserved.
+          p.footer__copy &copy; 2018. All rights reserved.
     block scripts
       script(src="/js/bundle.js")
       link(rel='stylesheet', href='/css/style.css')

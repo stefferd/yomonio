@@ -8,7 +8,7 @@ const mail = require('./../handlers/email');
 exports.login = passport.authenticate('local', {
     failureRedirect: '/admin/login',
     failureFlash: 'Failed login!',
-    successRedirect: '/admin/pages',
+    successRedirect: '/admin/interested',
     successFlash: 'You are now logged in!'
 });
 
@@ -29,7 +29,7 @@ exports.isLoggedIn = (req, res, next) => {
         return;
     }
     req.flash('error', 'Oops! you must be logged in to do that!');
-    res.redirect('/login');
+    res.redirect('/admin/login');
 };
 
 exports.isAdmin = (req, res, next) => {
